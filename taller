@@ -1,0 +1,544 @@
+using System;
+using System.Linq;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        bool salir = false;
+        while (!salir)
+        {
+            Console.Clear();
+            Console.WriteLine("============================================");
+            Console.WriteLine("   TALLER - ARREGLOS Y BUCLE FOR EN C#     ");
+            Console.WriteLine("============================================");
+            Console.WriteLine(" BLOQUE 1: Arreglos Unidimensionales");
+            Console.WriteLine("  1.  Registro de Temperaturas");
+            Console.WriteLine("  2.  Secuencia Fibonacci");
+            Console.WriteLine("  3.  Inicialización Alternativa");
+            Console.WriteLine("  4.  Promedio de Calificaciones");
+            Console.WriteLine("  5.  Buscador de Valores");
+            Console.WriteLine(" BLOQUE 2: Ordenamiento y System.Linq");
+            Console.WriteLine("  6.  Ranking de Ventas");
+            Console.WriteLine("  7.  Estadísticas Rápidas");
+            Console.WriteLine("  8.  Filtro de Inventario");
+            Console.WriteLine("  9.  Inversión de Arreglo");
+            Console.WriteLine("  10. Verificación de Aprobados");
+            Console.WriteLine(" BLOQUE 3: Bucles Anidados y Lógica Compleja");
+            Console.WriteLine("  11. Tablas de Multiplicar");
+            Console.WriteLine("  12. Dibujo de Patrones");
+            Console.WriteLine("  13. Comparación de Arreglos");
+            Console.WriteLine("  14. Identificación de Duplicados");
+            Console.WriteLine("  15. Matriz de Identidad");
+            Console.WriteLine(" BLOQUE 4: Arreglos Multidimensionales (2D)");
+            Console.WriteLine("  16. Registro de Asistencia");
+            Console.WriteLine("  17. Tabla de Precios");
+            Console.WriteLine("  18. Suma de Filas");
+            Console.WriteLine("  19. Mapa de Coordenadas");
+            Console.WriteLine("  20. Análisis de Ventas Mensuales");
+            Console.WriteLine("  0.  Salir");
+            Console.WriteLine("============================================");
+            Console.Write("Seleccione un ejercicio: ");
+
+            string opcion = Console.ReadLine();
+            Console.Clear();
+
+            switch (opcion)
+            {
+                case "1":  Ejercicio01(); break;
+                case "2":  Ejercicio02(); break;
+                case "3":  Ejercicio03(); break;
+                case "4":  Ejercicio04(); break;
+                case "5":  Ejercicio05(); break;
+                case "6":  Ejercicio06(); break;
+                case "7":  Ejercicio07(); break;
+                case "8":  Ejercicio08(); break;
+                case "9":  Ejercicio09(); break;
+                case "10": Ejercicio10(); break;
+                case "11": Ejercicio11(); break;
+                case "12": Ejercicio12(); break;
+                case "13": Ejercicio13(); break;
+                case "14": Ejercicio14(); break;
+                case "15": Ejercicio15(); break;
+                case "16": Ejercicio16(); break;
+                case "17": Ejercicio17(); break;
+                case "18": Ejercicio18(); break;
+                case "19": Ejercicio19(); break;
+                case "20": Ejercicio20(); break;
+                case "0":  salir = true; break;
+                default:
+                    Console.WriteLine("Opción no válida.");
+                    break;
+            }
+
+            if (!salir)
+            {
+                Console.WriteLine("\nPresione cualquier tecla para volver al menú...");
+                Console.ReadKey();
+            }
+        }
+        Console.WriteLine("¡Hasta luego!");
+    }
+
+    // ── EJERCICIO 1 ──────────────────────────────────────────────────────────
+    static void Ejercicio01()
+    {
+        Console.WriteLine("=== 1. Registro de Temperaturas ===\n");
+
+        double[] temperaturas = { 18.5, 22.0, 19.0, 24.0, 26.5, 21.0, 20.0 };
+        string[] dias = { "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo" };
+
+        Console.WriteLine("Temperaturas originales:");
+        for (int i = 0; i < temperaturas.Length; i++)
+            Console.WriteLine($"  {dias[i]}: {temperaturas[i]}°C");
+
+        // Modificar el tercer día (índice 2) a 25°C
+        temperaturas[2] = 25.0;
+        Console.WriteLine($"\nTemperatura del {dias[2]} actualizada a: {temperaturas[2]}°C");
+
+        Console.WriteLine("\nTemperaturas actualizadas:");
+        for (int i = 0; i < temperaturas.Length; i++)
+            Console.WriteLine($"  {dias[i]}: {temperaturas[i]}°C");
+    }
+
+    // ── EJERCICIO 2 ──────────────────────────────────────────────────────────
+    static void Ejercicio02()
+    {
+        Console.WriteLine("=== 2. Secuencia Fibonacci ===\n");
+
+        int[] fibonacci = new int[10];
+        fibonacci[0] = 0;
+        fibonacci[1] = 1;
+
+        for (int i = 2; i < fibonacci.Length; i++)
+            fibonacci[i] = fibonacci[i - 1] + fibonacci[i - 2];
+
+        Console.WriteLine("Secuencia Fibonacci (10 elementos):");
+        for (int i = 0; i < fibonacci.Length; i++)
+            Console.Write($"{fibonacci[i]}  ");
+        Console.WriteLine();
+    }
+
+    // ── EJERCICIO 3 ──────────────────────────────────────────────────────────
+    static void Ejercicio03()
+    {
+        Console.WriteLine("=== 3. Inicialización Alternativa ===\n");
+
+        string[] ciudades = { "Bogotá", "Medellín", "Cali", "Barranquilla", "Cartagena", "Bucaramanga" };
+
+        Console.WriteLine("Ciudades registradas:");
+        foreach (string ciudad in ciudades)
+            Console.WriteLine($"  - {ciudad}");
+
+        Console.WriteLine($"\nCantidad de ciudades: {ciudades.Length}");
+    }
+
+    // ── EJERCICIO 4 ──────────────────────────────────────────────────────────
+    static void Ejercicio04()
+    {
+        Console.WriteLine("=== 4. Promedio de Calificaciones ===\n");
+
+        double[] calificaciones = { 3.5, 4.0, 2.8, 4.5, 3.9, 2.5, 4.8, 3.2 };
+        double suma = 0;
+
+        Console.WriteLine("Calificaciones:");
+        foreach (double cal in calificaciones)
+        {
+            Console.Write($"  {cal}");
+            suma += cal;
+        }
+
+        double promedio = suma / calificaciones.Length;
+        Console.WriteLine($"\n\nSuma total: {suma}");
+        Console.WriteLine($"Número de estudiantes: {calificaciones.Length}");
+        Console.WriteLine($"Promedio: {promedio:F2}");
+    }
+
+    // ── EJERCICIO 5 ──────────────────────────────────────────────────────────
+    static void Ejercicio05()
+    {
+        Console.WriteLine("=== 5. Buscador de Valores ===\n");
+
+        int[] numeros = { 4, 15, 7, 23, 11, 42, 8, 19, 3, 30 };
+
+        Console.Write("Arreglo: ");
+        foreach (int n in numeros) Console.Write($"{n} ");
+        Console.WriteLine();
+
+        Console.Write("\nIngrese el número a buscar: ");
+        if (int.TryParse(Console.ReadLine(), out int buscar))
+        {
+            bool encontrado = false;
+            for (int i = 0; i < numeros.Length; i++)
+            {
+                if (numeros[i] == buscar)
+                {
+                    Console.WriteLine($"✔️ El número {buscar} fue encontrado en el índice {i}.");
+                    encontrado = true;
+                    break;
+                }
+            }
+            if (!encontrado)
+                Console.WriteLine($"✘ El número {buscar} no se encuentra en el arreglo.");
+        }
+        else
+        {
+            Console.WriteLine("Entrada no válida.");
+        }
+    }
+
+    // ── EJERCICIO 6 ──────────────────────────────────────────────────────────
+    static void Ejercicio06()
+    {
+        Console.WriteLine("=== 6. Ranking de Ventas ===\n");
+
+        double[] ventas = { 520.0, 134.5, 879.0, 245.0, 612.0, 98.5, 430.0 };
+
+        Console.WriteLine("Ventas originales:");
+        foreach (double v in ventas) Console.Write($"  ${v}");
+        Console.WriteLine();
+
+        Array.Sort(ventas);
+
+        Console.WriteLine("\nVentas ordenadas (menor a mayor):");
+        for (int i = 0; i < ventas.Length; i++)
+            Console.WriteLine($"  #{i + 1}: ${ventas[i]}");
+    }
+
+    // ── EJERCICIO 7 ──────────────────────────────────────────────────────────
+    static void Ejercicio07()
+    {
+        Console.WriteLine("=== 7. Estadísticas Rápidas (LINQ) ===\n");
+
+        int[] edades = { 23, 45, 18, 31, 27, 52, 19, 38, 41, 29 };
+
+        Console.Write("Edades: ");
+        foreach (int e in edades) Console.Write($"{e} ");
+        Console.WriteLine();
+
+        Console.WriteLine($"\nValor máximo : {edades.Max()}");
+        Console.WriteLine($"Valor mínimo : {edades.Min()}");
+        Console.WriteLine($"Suma total   : {edades.Sum()}");
+        Console.WriteLine($"Promedio     : {edades.Average():F2}");
+    }
+
+    // ── EJERCICIO 8 ──────────────────────────────────────────────────────────
+    static void Ejercicio08()
+    {
+        Console.WriteLine("=== 8. Filtro de Inventario (LINQ & Foreach) ===\n");
+
+        double[] precios = { 12.5, 75.0, 49.9, 120.0, 33.0, 55.5, 8.0, 200.0, 47.0, 65.0 };
+
+        Console.Write("Todos los precios: ");
+        foreach (double p in precios) Console.Write($"${p}  ");
+        Console.WriteLine();
+
+        var preciosFiltrados = precios.Where(p => p > 50);
+
+        Console.WriteLine("\nPrecios mayores a $50:");
+        foreach (double p in preciosFiltrados)
+            Console.WriteLine($"  ${p}");
+    }
+
+    // ── EJERCICIO 9 ──────────────────────────────────────────────────────────
+    static void Ejercicio09()
+    {
+        Console.WriteLine("=== 9. Inversión de Arreglo ===\n");
+
+        char[] original = { 'H', 'o', 'l', 'a', 'M', 'u', 'n', 'd', 'o' };
+        char[] invertido = new char[original.Length];
+
+        Console.Write("Arreglo original: ");
+        foreach (char c in original) Console.Write(c + " ");
+        Console.WriteLine();
+
+        for (int i = 0; i < original.Length; i++)
+            invertido[i] = original[original.Length - 1 - i];
+
+        Console.Write("Arreglo invertido: ");
+        foreach (char c in invertido) Console.Write(c + " ");
+        Console.WriteLine();
+    }
+
+    // ── EJERCICIO 10 ─────────────────────────────────────────────────────────
+    static void Ejercicio10()
+    {
+        Console.WriteLine("=== 10. Verificación de Aprobados ===\n");
+
+        double[] notas = { 3.5, 2.8, 4.0, 1.5, 3.0, 2.0, 4.5, 3.8, 2.3, 3.2 };
+        int aprobados = 0;
+
+        Console.WriteLine("Notas de los estudiantes:");
+        for (int i = 0; i < notas.Length; i++)
+        {
+            string estado = notas[i] >= 3.0 ? "Aprobado ✔️" : "Reprobado ✘";
+            Console.WriteLine($"  Estudiante {i + 1}: {notas[i]} → {estado}");
+            if (notas[i] >= 3.0) aprobados++;
+        }
+
+        double porcentaje = (double)aprobados / notas.Length * 100;
+        Console.WriteLine($"\nTotal estudiantes : {notas.Length}");
+        Console.WriteLine($"Aprobados         : {aprobados}");
+        Console.WriteLine($"Porcentaje        : {porcentaje:F1}%");
+    }
+
+    // ── EJERCICIO 11 ─────────────────────────────────────────────────────────
+    static void Ejercicio11()
+    {
+        Console.WriteLine("=== 11. Tablas de Multiplicar ===\n");
+
+        for (int i = 1; i <= 5; i++)
+        {
+            Console.WriteLine($"--- Tabla del {i} ---");
+            for (int j = 1; j <= 10; j++)
+                Console.WriteLine($"  {i} x {j,2} = {i * j,3}");
+            Console.WriteLine();
+        }
+    }
+
+    // ── EJERCICIO 12 ─────────────────────────────────────────────────────────
+    static void Ejercicio12()
+    {
+        Console.WriteLine("=== 12. Dibujo de Patrones ===\n");
+
+        int altura = 6;
+        Console.WriteLine($"Triángulo de altura {altura}:\n");
+
+        for (int i = 1; i <= altura; i++)
+        {
+            for (int j = 1; j <= i; j++)
+                Console.Write("* ");
+            Console.WriteLine();
+        }
+    }
+
+    // ── EJERCICIO 13 ─────────────────────────────────────────────────────────
+    static void Ejercicio13()
+    {
+        Console.WriteLine("=== 13. Comparación de Arreglos (Intersección) ===\n");
+
+        int[] arreglo1 = { 1, 5, 9, 3, 7, 11, 15 };
+        int[] arreglo2 = { 2, 5, 8, 3, 12, 7, 20 };
+
+        Console.Write("Arreglo 1: ");
+        foreach (int n in arreglo1) Console.Write($"{n} ");
+        Console.WriteLine();
+        Console.Write("Arreglo 2: ");
+        foreach (int n in arreglo2) Console.Write($"{n} ");
+        Console.WriteLine();
+
+        Console.Write("\nElementos en común: ");
+        bool hayComunes = false;
+        for (int i = 0; i < arreglo1.Length; i++)
+            for (int j = 0; j < arreglo2.Length; j++)
+                if (arreglo1[i] == arreglo2[j])
+                {
+                    Console.Write($"{arreglo1[i]} ");
+                    hayComunes = true;
+                }
+
+        if (!hayComunes) Console.Write("Ninguno");
+        Console.WriteLine();
+    }
+
+    // ── EJERCICIO 14 ─────────────────────────────────────────────────────────
+    static void Ejercicio14()
+    {
+        Console.WriteLine("=== 14. Identificación de Duplicados ===\n");
+
+        int[] numeros = { 3, 7, 2, 9, 7, 5, 3, 11, 2, 8 };
+
+        Console.Write("Arreglo: ");
+        foreach (int n in numeros) Console.Write($"{n} ");
+        Console.WriteLine("\n");
+
+        bool hayDuplicados = false;
+        for (int i = 0; i < numeros.Length - 1; i++)
+            for (int j = i + 1; j < numeros.Length; j++)
+                if (numeros[i] == numeros[j])
+                {
+                    Console.WriteLine($"  Duplicado encontrado: {numeros[i]} (índices {i} y {j})");
+                    hayDuplicados = true;
+                }
+
+        if (!hayDuplicados)
+            Console.WriteLine("No se encontraron duplicados.");
+    }
+
+    // ── EJERCICIO 15 ─────────────────────────────────────────────────────────
+    static void Ejercicio15()
+    {
+        Console.WriteLine("=== 15. Matriz de Identidad 3x3 ===\n");
+
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+                Console.Write(i == j ? "1 " : "0 ");
+            Console.WriteLine();
+        }
+    }
+
+    // ── EJERCICIO 16 ─────────────────────────────────────────────────────────
+    static void Ejercicio16()
+    {
+        Console.WriteLine("=== 16. Registro de Asistencia (Matriz 3x5) ===\n");
+
+        bool[,] asistencia = new bool[3, 5];
+
+        // Algunos valores de ejemplo
+        asistencia[0, 0] = true;
+        asistencia[0, 2] = true;
+        asistencia[1, 1] = true;
+        asistencia[2, 4] = true;
+
+        // Modificar posición [1,4] a true
+        asistencia[1, 4] = true;
+        Console.WriteLine("Asistencia marcada en [1,4] = true\n");
+
+        Console.WriteLine("Registro de Asistencia (T=Presente, F=Ausente):");
+        Console.Write("         ");
+        for (int j = 0; j < 5; j++) Console.Write($"Est.{j + 1}  ");
+        Console.WriteLine();
+
+        for (int i = 0; i < 3; i++)
+        {
+            Console.Write($"Grupo {i + 1}: ");
+            for (int j = 0; j < 5; j++)
+                Console.Write($"  {(asistencia[i, j] ? "T" : "F")}    ");
+            Console.WriteLine();
+        }
+    }
+
+    // ── EJERCICIO 17 ─────────────────────────────────────────────────────────
+    static void Ejercicio17()
+    {
+        Console.WriteLine("=== 17. Tabla de Precios (2D) ===\n");
+
+        double[,] precios = {
+            { 10.5,  20.0,  15.0 },   // Tienda 1
+            { 12.0,  18.5,  14.0 }    // Tienda 2
+        };
+        string[] productos = { "Producto 1", "Producto 2", "Producto 3" };
+        string[] tiendas   = { "Tienda 1",   "Tienda 2" };
+
+        Console.WriteLine("           Tienda 1   Tienda 2");
+        for (int p = 0; p < 3; p++)
+        {
+            Console.Write($"{productos[p]}: ");
+            for (int t = 0; t < 2; t++)
+                Console.Write($"  ${precios[t, p],6}");
+            Console.WriteLine();
+        }
+
+        Console.WriteLine($"\nPrecio del segundo producto en la primera tienda: ${precios[0, 1]}");
+    }
+
+    // ── EJERCICIO 18 ─────────────────────────────────────────────────────────
+    static void Ejercicio18()
+    {
+        Console.WriteLine("=== 18. Suma de Filas (Matriz 4x4) ===\n");
+
+        int[,] matriz = {
+            {  1,  2,  3,  4 },
+            {  5,  6,  7,  8 },
+            {  9, 10, 11, 12 },
+            { 13, 14, 15, 16 }
+        };
+
+        Console.WriteLine("Matriz:");
+        for (int i = 0; i < 4; i++)
+        {
+            int suma = 0;
+            Console.Write("  [ ");
+            for (int j = 0; j < 4; j++)
+            {
+                Console.Write($"{matriz[i, j],3} ");
+                suma += matriz[i, j];
+            }
+            Console.WriteLine($"] → Suma fila {i + 1}: {suma}");
+        }
+    }
+
+    // ── EJERCICIO 19 ─────────────────────────────────────────────────────────
+    static void Ejercicio19()
+    {
+        Console.WriteLine("=== 19. Mapa de Coordenadas (2x2) ===\n");
+
+        string[,] mapa = {
+            { "Norte-Oeste", "Norte-Este" },
+            { "Sur-Oeste",   "Sur-Este"   }
+        };
+
+        Console.WriteLine("Mapa actual:");
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+                Console.Write($"[{mapa[i, j],12}] ");
+            Console.WriteLine();
+        }
+
+        Console.Write("\nIngrese fila (0 o 1): ");
+        int.TryParse(Console.ReadLine(), out int fila);
+        Console.Write("Ingrese columna (0 o 1): ");
+        int.TryParse(Console.ReadLine(), out int col);
+
+        if (fila >= 0 && fila < 2 && col >= 0 && col < 2)
+        {
+            mapa[fila, col] = "Explorado";
+            Console.WriteLine($"\nPosición [{fila},{col}] actualizada a 'Explorado'\n");
+            Console.WriteLine("Mapa actualizado:");
+            for (int i = 0; i < 2; i++)
+            {
+                for (int j = 0; j < 2; j++)
+                    Console.Write($"[{mapa[i, j],12}] ");
+                Console.WriteLine();
+            }
+        }
+        else
+        {
+            Console.WriteLine("Coordenada no válida.");
+        }
+    }
+
+    // ── EJERCICIO 20 ─────────────────────────────────────────────────────────
+    static void Ejercicio20()
+    {
+        Console.WriteLine("=== 20. Análisis de Ventas Mensuales (2D & LINQ) ===\n");
+
+        // Filas = meses (0-2), Columnas = categorías (0-3)
+        double[,] ventas = {
+            { 200.0, 150.0, 300.0, 120.0 },  // Mes 1
+            { 180.0, 210.0, 275.0, 190.0 },  // Mes 2
+            { 220.0, 175.0, 310.0, 160.0 }   // Mes 3
+        };
+        string[] categorias = { "Electrónica", "Ropa", "Alimentos", "Juguetes" };
+
+        Console.WriteLine("Ventas por mes y categoría:");
+        Console.Write($"{"",10}");
+        foreach (string c in categorias) Console.Write($"{c,12}");
+        Console.WriteLine();
+
+        for (int i = 0; i < 3; i++)
+        {
+            Console.Write($"  Mes {i + 1}:  ");
+            for (int j = 0; j < 4; j++)
+                Console.Write($"${ventas[i, j],10}");
+            Console.WriteLine();
+        }
+
+        // Total ventas mes 2 (índice 1) con bucle
+        double totalMes2 = 0;
+        for (int j = 0; j < 4; j++)
+            totalMes2 += ventas[1, j];
+        Console.WriteLine($"\nTotal ventas Mes 2 (bucle): ${totalMes2}");
+
+        // Valor más alto con LINQ
+        double[] todosLosValores = new double[3 * 4];
+        int idx = 0;
+        for (int i = 0; i < 3; i++)
+            for (int j = 0; j < 4; j++)
+                todosLosValores[idx++] = ventas[i, j];
+
+        Console.WriteLine($"Valor más alto en toda la matriz (LINQ): ${todosLosValores.Max()}");
+    }
+}
